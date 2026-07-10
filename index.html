@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fario | আল্ট্রা-মডার্ন প্রযুক্তি এবং এআই সল্যুশন</title>
+    <meta name="description" content="Fario একটি আধুনিক অনলাইন প্রযুক্তি প্রতিষ্ঠান যেখানে AI, সফটওয়্যার, ওয়েবসাইট এবং ডিজিটাল সল্যুশন তৈরি করা হয়।">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Fario | আল্ট্রা-মডার্ন প্রযুক্তি এবং এআই সল্যুশন">
+    <meta property="og:description" content="Fario একটি আধুনিক অনলাইন প্রযুক্তি প্রতিষ্ঠান যেখানে AI, সফটওয়্যার, ওয়েবসাইট এবং ডিজিটাল সল্যুশন তৈরি করা হয়।">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #8EDBFF;
+            --primary-glow: rgba(142, 219, 255, 0.3);
+            --bg-main: #0B111E;
+            --bg-card: rgba(22, 33, 54, 0.6);
+            --bg-card-hover: rgba(30, 45, 74, 0.8);
+            --border-color: rgba(142, 219, 255, 0.15);
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --glass-bg: rgba(11, 17, 30, 0.75);
+            --accent-gradient: linear-gradient(135deg, #8EDBFF 0%, #3B82F6 100%);
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        [data-theme="light"] {
+            --primary: #0077B6;
+            --primary-glow: rgba(0, 119, 182, 0.2);
+            --bg-main: #F8FAFC;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-card-hover: rgba(255, 255, 255, 1);
+            --border-color: rgba(0, 119, 182, 0.15);
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --glass-bg: rgba(248, 250, 252, 0.85);
+            --accent-gradient: linear-gradient(135deg, #0077B6 0%, #0096C7 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Ambient Dynamic Mesh Background */
+        .bg-mesh {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+
+        .mesh-orb {
+            position: absolute; border-radius: 50%; filter: blur(140px);
+            opacity: 0.15; background: var(--accent-gradient);
+            animation: floatOrb 25s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 600px; height: 600px; top: -10%; left: -10%; animation-duration: 22s; }
+        .orb-2 { width: 700px; height: 700px; bottom: -20%; right: -10%; animation-duration: 28s; }
+        .orb-3 { width: 500px; height: 500px; top: 35%; left: 45%; animation-duration: 18s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 60px) scale(1.2); }
+        }
+
+        /* Beautiful Loading Screens */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--bg-main); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .loader-ring {
+            width: 70px; height: 70px; border: 4px solid transparent;
+            border-top-color: var(--primary); border-bottom-color: var(--primary);
+            border-radius: 50%; animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        #cursor-glow {
+            position: fixed; width: 450px; height: 450px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 75%);
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
+            z-index: 9998; mix-blend-mode: screen; opacity: 0; transition: opacity 0.3s ease;
+        }
+
+        /* Fixed Navigation Design Updates */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color);
+            z-index: 1000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding: 1.5rem 0;
+        }
+
+        header.scrolled { padding: 0.75rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; }
+
+        .logo {
+            font-size: 1.9rem; font-weight: 700; color: var(--text-main);
+            text-decoration: none; letter-spacing: -0.5px; display: flex; align-items: center; gap: 0.6rem;
+        }
+
+        .logo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+
+        .theme-toggle, .menu-trigger {
+            background: transparent; border: none; cursor: pointer; color: var(--text-main);
+            display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+            border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover, .menu-trigger:hover { background-color: var(--border-color); transform: scale(1.05); }
+
+        /* Navigation Menu Layer Overlays */
+        .nav-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            z-index: 999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-overlay.active { opacity: 1; pointer-events: auto; }
+        .overlay-links { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 1.2rem; }
+        
+        .overlay-links a {
+            font-size: 2.2rem; font-weight: 600; color: var(--text-main); text-decoration: none;
+            transition: all 0.3s ease; display: inline-block; position: relative;
+        }
+        
+        .overlay-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+        /* Premium Smooth Section Rendering */
+        section {
+            padding: 9rem 0 5rem 0; opacity: 0; transform: translateY(50px);
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-title { font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; text-align: center; }
+        
+        .section-title::after {
+            content: ''; display: block; width: 80px; height: 5px;
+            background: var(--accent-gradient); margin: 0.8rem auto 0 auto; border-radius: 10px;
+        }
+
+        /* Glassmorphism Premium Cards System */
+        .glass-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px; padding: 2.5rem; display: flex; flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02); border-color: var(--primary);
+            box-shadow: 0 20px 40px var(--primary-glow); background: var(--bg-card-hover);
+        }
+
+        /* Responsive Global Premium Buttons UI */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2.2rem; border-radius: 50px; font-size: 1rem; font-weight: 600;
+            text-decoration: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none; gap: 0.6rem; text-align: center;
+        }
+
+        .btn-primary { background: var(--accent-gradient); color: #FFFFFF; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px var(--primary-glow); }
+        .btn-secondary { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-secondary:hover { background: var(--border-color); transform: translateY(-3px); }
+
+        /* Extended Fluid Hero Core Framework */
+        #home { min-height: 100vh; display: flex; align-items: center; padding: 0; }
+        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-tagline { font-size: 1.25rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; }
+        .hero-title { font-size: 4.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 2rem; letter-spacing: -1px; }
+        .hero-title span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .typing-text::after { content: '|'; animation: blink 0.8s infinite; color: var(--primary); }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+
+        /* SVG Vector Service Cards Layout Styles */
+        .service-icon { width: 56px; height: 56px; color: var(--primary); margin-bottom: 1.5rem; transition: transform 0.3s ease; }
+        .glass-card:hover .service-icon { transform: rotate(-10deg) scale(1.1); }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
+        .service-card p { color: var(--text-muted); line-height: 1.7; font-size: 1rem; }
+
+        /* Modular Dynamic Component Portfolio Carousel Slider */
+        .portfolio-slider-container { position: relative; width: 100%; overflow: hidden; padding: 1.5rem 0; }
+        .portfolio-track { display: flex; gap: 2.5rem; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); width: max-content; }
+        .project-card { width: 390px; flex-shrink: 0; }
+        
+        .project-img-wrapper {
+            width: 100%; height: 230px; border-radius: 14px; overflow: hidden;
+            background: #111827; margin-bottom: 1.5rem; position: relative; border: 1px solid var(--border-color);
+        }
+
+        .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .project-card:hover .project-img-wrapper img { transform: scale(1.1); }
+        .project-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+        .tag { font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.9rem; border-radius: 30px; background: var(--border-color); color: var(--primary); }
+        .slider-controls { display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem; }
+        
+        /* Modern Tech Blog Styling With Integrated Images Dynamic View */
+        .blog-card-img {
+            width: 100%; height: 190px; object-fit: cover; border-radius: 12px;
+            margin-bottom: 1.5rem; border: 1px solid var(--border-color);
+        }
+
+        /* Responsive Form Elements Base */
+        .form-group { margin-bottom: 1.8rem; position: relative; width: 100%; }
+        
+        .form-control {
+            width: 100%; padding: 1.1rem 1.4rem; border-radius: 14px; background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color); color: var(--text-main); font-family: inherit;
+            font-size: 1rem; transition: all 0.3s ease; outline: none;
+        }
+
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); background: rgba(0,0,0,0.4); }
+        textarea.form-control { resize: vertical; min-height: 140px; }
+
+        /* Client Review Grid Layout Elements */
+        .review-header { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .review-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .review-stars { color: #FBBF24; display: flex; gap: 0.3rem; margin-top: 0.5rem; }
+
+        /* Animated Functional Accordion Matrix Setup */
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; transition: all 0.3s ease; }
+        
+        .faq-trigger {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            background: transparent; border: none; color: var(--text-main); font-size: 1.25rem;
+            font-weight: 600; text-align: left; cursor: pointer; padding: 0.5rem 0; gap: 1rem;
+        }
+
+        .faq-panel { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-panel p { padding-top: 1.2rem; color: var(--text-muted); line-height: 1.7; font-size: 1rem; }
+        .faq-icon { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); color: var(--primary); }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+
+        /* Premium Multi-Workspace Administrative Overlay Shell Layout */
+        .modal-mask {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(4, 7, 13, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 1rem;
+        }
+
+        .modal-mask.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-shell {
+            background: #0E1626; border: 1px solid var(--border-color); border-radius: 24px;
+            width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; padding: 3rem;
+            position: relative; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+
+        .modal-mask.active .modal-shell { transform: translateY(0); }
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--text-main); cursor: pointer; transition: transform 0.2s ease; }
+        .modal-close:hover { transform: scale(1.1) rotate(90deg); color: var(--danger); }
+
+        /* Advanced Full CRUD Admin Layout Matrix Grid */
+        .admin-view-panel { display: grid; grid-template-columns: 240px 1fr; gap: 2.5rem; min-height: 550px; margin-top: 1.5rem; }
+        .admin-sidebar { border-right: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.8rem; padding-right: 1.5rem; }
+        
+        .admin-tab-btn {
+            width: 100%; padding: 0.9rem 1.2rem; border-radius: 12px; background: transparent;
+            border: none; color: var(--text-main); text-align: left; cursor: pointer;
+            font-weight: 600; font-size: 0.95rem; transition: all 0.25s ease;
+        }
+
+        .admin-tab-btn.active, .admin-tab-btn:hover { background: var(--border-color); color: var(--primary); transform: translateX(4px); }
+        .admin-main-workspace { overflow-y: auto; padding-left: 0.5rem; }
+        .admin-pane { display: none; }
+        .admin-pane.active { display: block; }
+        .admin-pane h4 { font-size: 1.4rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        
+        .data-table-wrapper { width: 100%; overflow-x: auto; margin-top: 1rem; border-radius: 12px; border: 1px solid var(--border-color); }
+        .data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
+        .data-table th, .data-table td { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border-color); }
+        .data-table th { background: rgba(0,0,0,0.3); font-weight: 600; color: var(--primary); }
+        .data-table tr:last-child td { border-bottom: none; }
+        
+        /* Action Utility Badges Elements */
+        .action-btn-group { display: flex; gap: 0.5rem; }
+        .action-icon-btn { background: transparent; border: 1px solid var(--border-color); border-radius: 6px; padding: 0.4rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--text-main); transition: all 0.2s ease; }
+        .action-icon-btn.edit:hover { background: var(--warning); color: #000; border-color: var(--warning); }
+        .action-icon-btn.delete:hover { background: var(--danger); color: #FFF; border-color: var(--danger); }
+        
+        .status-badge { padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: inline-block; }
+        .status-pending { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .status-shortlisted { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+        .status-rejected { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+        /* Floating Utilities Framework */
+        #toast-container { position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.8rem; max-width: 350px; width: 100%; }
+        
+        .toast-card {
+            background: rgba(14, 22, 38, 0.9); border: 1px solid var(--primary); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px); padding: 1.1rem 1.6rem; border-radius: 14px; color: var(--text-main);
+            box-shadow: 0 10px 30px var(--primary-glow); transform: translateX(130%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500; font-size: 0.95rem;
+        }
+
+        .toast-card.active { transform: translateX(0); }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-gradient); width: 0%; z-index: 1001; }
+        
+        #top-scroller {
+            position: fixed; bottom: 2.5rem; left: 2.5rem; width: 50px; height: 50px;
+            border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-main); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 998;
+        }
+
+        #top-scroller.active { opacity: 1; pointer-events: auto; }
+        #top-scroller:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+        /* Premium Modern Footer Structure Layout */
+        footer { background: #060A12; border-top: 1px solid var(--border-color); padding: 7rem 0 3.5rem 0; position: relative; overflow: hidden; }
+        .footer-waves { position: absolute; top: 0; left: 0; width: 100%; height: 45px; margin-bottom: -7px; min-height: 45px; }
+        .wave-parallax > use { animation: move-wave 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+        .wave-parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 8s; fill: rgba(142, 219, 255, 0.06); }
+        .wave-parallax > use:nth-child(2) { animation-delay: -4s; animation-duration: 12s; fill: rgba(142, 219, 255, 0.04); }
+        @keyframes move-wave { 0% { transform: translate3d(-90px,0,0); } 100% { transform: translate3d(85px,0,0); } }
+        
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(2, 1fr); gap: 4rem; margin-bottom: 5rem; }
+        .footer-brand h2 { font-size: 2rem; margin-bottom: 1.2rem; }
+        .footer-brand p { color: #9CA3AF; line-height: 1.7; max-width: 400px; font-size: 1rem; }
+        .footer-links-col h4 { font-size: 1.2rem; margin-bottom: 1.8rem; font-weight: 600; color: var(--primary); }
+        .footer-links-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+        .footer-links-col a { color: #9CA3AF; text-decoration: none; transition: color 0.2s ease; font-size: 0.95rem; }
+        .footer-links-col a:hover { color: var(--primary); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2.5rem; display: flex; justify-content: space-between; align-items: center; color: #6B7280; font-size: 0.95rem; }
+        .footer-socials { display: flex; gap: 1.2rem; }
+        .footer-socials a { color: #6B7280; transition: color 0.3s ease; }
+        .footer-socials a:hover { color: var(--primary); transform: scale(1.1); }
+
+        /* Advanced Responsive Media Breakpoints Engine */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+            .hero-title { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            section { padding: 7rem 0 3.5rem 0; }
+            .hero-title { font-size: 2.6rem; }
+            .section-title { font-size: 2.1rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1.8rem; text-align: center; }
+            .admin-view-panel { grid-template-columns: 1fr; gap: 1.5rem; }
+            .admin-sidebar { border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 1.2rem; flex-direction: row; overflow-x: auto; width: 100%; }
+            .admin-tab-btn { white-space: nowrap; width: auto; padding: 0.6rem 1rem; }
+            .project-card { width: 310px; }
+            .modal-shell { padding: 2rem 1.5rem; }
+            .btn { width: 100%; }
+            .hero-buttons .btn { width: auto; flex-grow: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Loading Progress Bar Tracker -->
+    <div id="scroll-progress"></div>
+
+    <!-- Screen Animation Initialization Mask -->
+    <div id="loader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- Core Dynamic Ambient Vector Graphics Layout Space -->
+    <div class="bg-mesh">
+        <div class="mesh-orb orb-1"></div>
+        <div class="mesh-orb orb-2"></div>
+        <div class="mesh-orb orb-3"></div>
+    </div>
+
+    <div id="cursor-glow"></div>
+
+    <!-- Core Dynamic Fixed Navigation Header -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 4H26C27.1046 4 28 4.89543 28 6V26C28 27.1046 27.1046 28 26 28H6C4.89543 28 4 27.1046 4 26V6C4 4.89543 4.89543 4 6 4Z" stroke="url(#logo-grad)" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M11 12L17 16L11 20" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 20H17" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="logo-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#8EDBFF" />
+                            <stop offset="100%" stop-color="#3B82F6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>Fario</span>
+            </a>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="menu-trigger" id="menu-btn" aria-label="Open Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12" id="line1"></line><line x1="3" y1="6" x2="21" y2="6" id="line2"></line><line x1="3" y1="18" x2="21" y2="18" id="line3"></line></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay View Navigation Links Drawer Container -->
+    <div class="nav-overlay" id="menu-overlay">
+        <ul class="overlay-links">
+            <li><a href="#home">হোম</a></li>
+            <li><a href="#about">আমাদের সম্পর্কে</a></li>
+            <li><a href="#services">সার্ভিসসমূহ</a></li>
+            <li><a href="#projects">পোর্টফোলিও</a></li>
+            <li><a href="#blog">ব্লগ</a></li>
+            <li><a href="#careers">ক্যারিয়ার</a></li>
+            <li><a href="#reviews">রিভিউ</a></li>
+            <li><a href="#faq">এফএকিউ</a></li>
+            <li><a href="#contact">যোগাযোগ</a></li>
+            <li><a href="#" id="admin-trigger-link" style="color: var(--primary);">অ্যাডমিন ড্যাশবোর্ড</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Container Space Rules -->
+    <main class="container">
+
+        <!-- Modern Dynamic Responsive Hero Module -->
+        <section id="home">
+            <div class="hero-content">
+                <p class="hero-tagline">ভবিষ্যতের প্রযুক্তির কারিগর</p>
+                <h1 class="hero-title">আমরা তৈরি করি <br><span id="typing-destination" class="typing-text"></span></h1>
+                <p style="color: var(--text-muted); font-size: 1.25rem; line-height: 1.8; margin-bottom: 2.5rem;">
+                    Fario একটি আধুনিক অনলাইন প্রযুক্তি প্রতিষ্ঠান যেখানে AI, সফটওয়্যার, ওয়েবসাইট এবং ডিজিটাল সল্যুশন তৈরি করা হয়।
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">যোগাযোগ করুন</a>
+                    <a href="#about" class="btn btn-secondary">আমাদের সম্পর্কে জানুন</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Corporate Structure Overview Section Layout -->
+        <section id="about">
+            <h2 class="section-title">আমাদের সম্পর্কে</h2>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <h3 style="font-size:1.6rem; margin-bottom:1.2rem; color:var(--primary);">আমরা কে?</h3>
+                    <p style="color:var(--text-muted); line-height:1.8; font-size:1.05rem;">Fario সম্পূর্ণ অনলাইন-ভিত্তিক একটি সর্বাধুনিক প্রযুক্তিগত প্রতিষ্ঠান যা বাংলাদেশ থেকে বৈশ্বিক মানের ডিজিটাল সেবা প্রদান করে। আমরা কোনো নির্দিষ্ট সীমানায় আবদ্ধ না থেকে ভার্চুয়াল কোলাবরেশনের মাধ্যমে দ্রুত ও নিখুঁত ক্লায়েন্ট ডেলিভারি নিশ্চিত করি।</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="font-size:1.6rem; margin-bottom:1.2rem; color:var(--primary);">আমাদের লক্ষ্য</h3>
+                    <p style="color:var(--text-muted); line-height:1.8; font-size:1.05rem;">কৃত্রিম বুদ্ধিমত্তা এবং মডার্ন ডিজিটাল আর্কিটেকচার ব্যবহারের মাধ্যমে বাংলাদেশের ছোট-বড় ব্যবসা প্রতিষ্ঠানগুলোকে বিশ্বমঞ্চে প্রতিযোগিতাপূর্ণ করে গড়ে তোলা এবং তাদের অপারেশনাল জটিলতা দূর করা আমাদের মূল লক্ষ্য।</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="font-size:1.6rem; margin-bottom:1.2rem; color:var(--primary);">কেন আমাদের বিশ্বাস করবেন?</h3>
+                    <p style="color:var(--text-muted); line-height:1.8; font-size:1.05rem;">আমাদের রয়েছে ডেডিকেটেড এক্সপার্ট টিম, শতভাগ সিকিউর কোড বেস স্ট্রাকচার, ট্রান্সপারেন্ট কাস্টমার সাপোর্ট পলিসি এবং আধুনিক গ্লোবাল ট্রেন্ড অনুযায়ী কাস্টমাইজড সফটওয়্যার ডেভেলপমেন্টের অভিজ্ঞতা।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Architectural Corporate Capability Cards -->
+        <section id="services">
+            <h2 class="section-title">আমাদের সার্ভিসসমূহ</h2>
+            <div class="grid-layout">
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v12"></path><path d="M8 10h8"></path></svg>
+                    <h3>AI Software Development</h3>
+                    <p>মেশিন লার্নিং মডেল, কাস্টম এলএলএম ইন্টিগ্রেশন এবং ডেটা অ্যানালিটিক্স অ্যাপ্লিকেশনের মাধ্যমে আপনার ব্যবসায়িক সিদ্ধান্তকে স্বয়ংক্রিয় করুন।</p>
+                </div>
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <h3>Website Development</h3>
+                    <p>আল্ট্রা-ফাস্ট লোডিং স্পিড, হাইপার-রেসপন্সিভ গ্রিড এবং এসইও অপ্টিমাইজড হাই-এন্ড এন্টারপ্রাইজ ওয়েব প্ল্যাটফর্ম ডেভেলপমেন্ট।</p>
+                </div>
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    <h3>Mobile App Development</h3>
+                    <p>অ্যান্ড্রয়েড এবং আইওএস উভয় প্ল্যাটফর্মের জন্য মসৃণ পারফরম্যান্সের নেটিভ এবং হাইব্রিড ক্রস-প্ল্যাটফর্ম মোবাইল অ্যাপ্লিকেশন।</p>
+                </div>
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <h3>UI/UX Design</h3>
+                    <p>ব্যবহারকারীর মনস্তত্ত্ব বিশ্লেষণ করে অত্যন্ত আকর্ষণীয়, মিনিমালিস্টিক এবং সহজে ব্যবহারযোগ্য ইন্টারফেস লেআউট ডিজাইন।</p>
+                </div>
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <h3>Custom Software</h3>
+                    <p>আপনার কোম্পানির সুনির্দিষ্ট ইন্টারনাল কাজের সুবিধার্থে সম্পূর্ণ কাস্টমাইজড এবং স্কেলেবল সফটওয়্যার আর্কিটেকচার।</p>
+                </div>
+                <div class="glass-card service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3z"></path><path d="M6 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3z"></path></svg>
+                    <h3>Automation Systems</h3>
+                    <p>ম্যানুয়াল রিপোর্টিং বা ডাটা এন্ট্রির মতো দৈনন্দিন পুনরাবৃত্তিমূলক কাজগুলোকে রোবোটিক প্রসেস অটোমেশনের মাধ্যমে সহজীকরণ।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- High-Performance Portfolio Swiper Track Module Layout -->
+        <section id="projects">
+            <h2 class="section-title">আমাদের প্রজেক্টসমূহ</h2>
+            <div class="portfolio-slider-container">
+                <div class="portfolio-track" id="projects-target-track">
+                    <!-- Data Injection Pipelines via JS Context Arrays -->
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-arrow" id="slide-prev-btn" aria-label="Previous Slide">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <button class="slider-arrow" id="slide-next-btn" aria-label="Next Slide">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Upgraded Tech Blog Elements Content System Grid Area -->
+        <section id="blog">
+            <h2 class="section-title">টেকনোলজি ব্লগ</h2>
+            <div class="grid-layout" id="blog-target-grid">
+                <!-- Controlled completely through CRUD modules -->
+            </div>
+        </section>
+
+        <!-- Highly Advanced Pipeline Career Human Capital Management Application Layer Forms -->
+        <section id="careers">
+            <h2 class="section-title">ক্যারিয়ার সুযোগ</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 650px; margin: -1.5rem auto 3.5rem auto; line-height: 1.8; font-size: 1.1rem;">
+                Fario-তে আমরা নিয়মিত প্রতিভাবান এবং ডেডিকেটেড প্রফেশনালদের খুঁজছি। আপনি যদি দূরবর্তী কাজের পরিবেশে নিজেকে প্রমাণ করতে প্রস্তুত হন, তবে আজই আবেদন করুন।
+            </p>
+            <div class="grid-layout" style="align-items: start;">
+                <div class="glass-card">
+                    <h3 style="font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--primary);">আমরা যাদের নিয়োগ করি</h3>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.2rem; color: var(--text-muted); font-size: 1.05rem;">
+                        <li style="display: flex; gap: 0.6rem; align-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--success);"><polyline points="20 6 9 17 4 12"></polyline></svg> Software Engineers (React, Node, Python)</li>
+                        <li style="display: flex; gap: 0.6rem; align-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--success);"><polyline points="20 6 9 17 4 12"></polyline></svg> AI & Machine Learning Researchers</li>
+                        <li style="display: flex; gap: 0.6rem; align-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--success);"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Stack Web Developers</li>
+                        <li style="display: flex; gap: 0.6rem; align-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--success);"><polyline points="20 6 9 17 4 12"></polyline></svg> UI/UX Premium Product Designers</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card">
+                    <form id="career-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="career-name" placeholder="আপনার সম্পূর্ণ নাম" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="career-email" placeholder="ইমেইল অ্যাড্রেস" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" id="career-phone" placeholder="ফোন নম্বর" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" class="form-control" id="career-portfolio" placeholder="পোর্টফোলিও লিংক / রেজুমে ইউআরএল লিংক" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="career-skills" placeholder="প্রধান স্কিলসমূহ (কমা দিয়ে আলাদা করুন)" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="career-msg" placeholder="সংক্ষিপ্ত কভার লেটারে কেন আপনি পারফেক্ট তা লিখুন..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">আবেদন জমা দিন</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Grid Matrix Reviews Layer -->
+        <section id="reviews">
+            <h2 class="section-title">ক্লাইন্ট রিভিউসমূহ</h2>
+            <div class="grid-layout" id="reviews-target-grid">
+                <!-- Dynamic Elements Matrix Populates Explicitly Here -->
+            </div>
+        </section>
+
+        <!-- Frequently Answered Inquiries Accordions Base System -->
+        <section id="faq">
+            <h2 class="section-title">সাধারণ কিছু প্রশ্ন (FAQ)</h2>
+            <div style="max-width: 850px; margin: 0 auto;" class="glass-card">
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Fario কি সম্পূর্ণ রিমোট বা অনলাইন ভিত্তিক কোম্পানি?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-panel"><p>হ্যাঁ, Fario একটি আধুনিক ক্লাউড এবং অনলাইন-অর্গানাইজড প্রতিষ্ঠান। আমাদের ইঞ্জিনিয়ার ও ডিজাইনারগণ সেন্ট্রাল ভার্চুয়াল ম্যানেজমেন্ট সিস্টেমের অধীনে সম্পূর্ণ সিকিউরড প্ল্যাটফর্মে কাজ সম্পন্ন করে থাকেন।</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>প্রজেক্টের পেমেন্ট মেথড বা সিকিউরিটি কীভাবে নিশ্চিত করা হয়?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-panel"><p>আমরা লোকাল বাংলাদেশী ব্যাংকিং চ্যানলে, মোবাইল ফিন্যান্সিয়াল সার্ভিস (MFS) এবং গ্লোবাল ক্লায়েন্টদের জন্য ইন্টারন্যাশনাল ওয়্যার ট্রান্সফার এক্সেপ্ট করি। প্রতিটি প্রজেক্ট অফিসিয়াল চুক্তিপত্রের মাধ্যমে আইনি সুরক্ষায় পরিচালিত হয়।</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>একটি কাস্টম সফটওয়্যার তৈরি করতে কত সময় লাগে?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-panel"><p>কাজের পরিধি এবং জটিলতার ওপর ভিত্তি করে সময় নির্ধারিত হয়। সাধারণ বিজনেস সাইট ৩ থেকে ৭ দিন এবং জটিল এআই বা ডাটাবেজ ইন্টিগ্রেটেড কাস্টম সফটওয়্যার ডেভেলপমেন্টে ৩ থেকে ১২ সপ্তাহ পর্যন্ত সময় লাগতে পারে।</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primary Secure Inbound Interface Form Target Module Section -->
+        <section id="contact">
+            <h2 class="section-title">যোগাযোগ করুন</h2>
+            <div style="max-width: 650px; margin: 0 auto;" class="glass-card">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="contact-name" placeholder="আপনার নাম" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="contact-identity" placeholder="ইমেইল অথবা ফোন নম্বর" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="contact-message" placeholder="আপনার বার্তাটি এখানে বিস্তারিত লিখুন..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">বার্তা পাঠান</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Native Responsive Dialog Framework Overlays Dynamic Modals Portal Shell -->
+    <div class="modal-mask" id="global-modal-mask">
+        <div class="modal-shell" id="global-modal-shell">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div id="modal-dynamic-content">
+                <!-- Generated dynamically via interaction logic scripts engine inside view state controllers -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Floating Interactive UI Elements Overlays Container -->
+    <button id="top-scroller" aria-label="Scroll To Top">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+
+    <div id="toast-container"></div>
+
+    <!-- Premium Site Global Footer Block -->
+    <footer>
+        <svg class="footer-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="wave-parallax">
+                <use href="#gentle-wave" x="48" y="0" />
+                <use href="#gentle-wave" x="48" y="3" />
+            </g>
+        </svg>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>Fario</h2>
+                    <p>বাংলাদেশ থেকে পরিচালিত বিশ্বমানের অনলাইন প্রযুক্তিগত সল্যুশন এজেন্সি। আপনার আইডিয়াকে বাস্তবে রূপান্তর করতে আমরা বদ্ধপরিকর।</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>কোম্পানি</h4>
+                    <ul>
+                        <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                        <li><a href="#services">সার্ভিসসমূহ</a></li>
+                        <li><a href="#projects">প্রজেক্টসমূহ</a></li>
+                        <li><a href="#careers">ক্যারিয়ার রিসোর্স</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>আইনি তথ্য</h4>
+                    <ul>
+                        <li><a href="#faq">জিজ্ঞাসাবাদ</a></li>
+                        <li><a href="#contact">সহায়তা কেন্দ্র centre</a></li>
+                        <li><span style="color:#6B7280; font-size:0.95rem;">প্রাইভেসি পলিসি</span></li>
+                        <li><span style="color:#6B7280; font-size:0.95rem;">টার্মস অফ সার্ভিস</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Fario. সর্বস্বত্ব সংরক্ষিত।</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="GitHub Link">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn Link">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Central Reactive Architecture JavaScript Code Layer Engines -->
+    <script>
+        const APP_STORAGE_KEY_BLOGS = 'fario_platform_data_blogs';
+        const APP_STORAGE_KEY_PROJECTS = 'fario_platform_data_projects';
+        const APP_STORAGE_KEY_CONTACTS = 'fario_platform_data_messages';
+        const APP_STORAGE_KEY_CAREERS = 'fario_platform_data_applications';
+
+        const defaultBlogs = [
+            { id: 1, title: 'কৃত্রিম বুদ্ধিমত্তা (AI) কীভাবে ব্যবসার রূপান্তর ঘটাচ্ছে', excerpt: 'বর্তমান সময়ে এআই ইন্টিগ্রেশন ছাড়া বৈশ্বিক বাজারে টিকে থাকা প্রায় অসম্ভব। জানুন কীভাবে সহজে কাস্টম এআই সফটওয়্যার আপনার কোম্পানির কার্যক্ষমতা বৃদ্ধি করতে পারে...', content: 'কৃত্রিম বুদ্ধিমত্তা বা AI এখন আর কোনো দূরবর্তী কল্পনা নয়। বর্তমান সময়ে এআই ইন্টিগ্রেশন ছাড়া বৈশ্বিক বাজারে টিকে থাকা প্রায় অসম্ভব। জানুন কীভাবে সহজে কাস্টম এআই সফটওয়্যার আপনার কোম্পানির কার্যক্ষমতা বৃদ্ধি করতে পারে। ফারিও ডেভেলপমেন্ট টিম নিয়মিত কাস্টম বিজনেস লজিক এবং নিউরাল প্রসেস ব্যবহারের মাধ্যমে আপনার দৈনন্দিন অপারেশনাল কস্ট প্রায় ৩০% পর্যন্ত নামিয়ে আনতে সক্ষম।', img: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, title: '২০২৬ সালে হাই-পারফর্মিং ওয়েব আর্কিটেকচারের গুরুত্ব', excerpt: 'একটি ওয়েবসাইটের লোডিং টাইম যদি ৩ সেকেন্ডের বেশি হয়, তবে প্রায় ৪০% ব্যবহারকারী সাইট ছেড়ে চলে যান। মডার্ন ক্লিন কোডিং টেকনিক্স ও এজ কম্পিউটিং ব্যবহার...', content: 'একটি ওয়েবসাইটের লোডিং টাইম যদি ৩ সেকেন্ডের বেশি হয়, তবে প্রায় ৪০% ব্যবহারকারী সাইট ছেড়ে চলে যান। মডার্ন ক্লিন কোডিং টেকনিক্স ও এজ কম্পিউটিং ব্যবহার করে আমরা তৈরি করি আল্ট্রা ফাস্ট ইন্টারফেস যা আপনার ব্র্যান্ড ভ্যালু বৃদ্ধির পাশাপাশি গুগলের সার্চ র‍্যাংকিংয়ে সরাসরি পজিটিভ সিগন্যাল প্রদান করে।', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80' }
+        ];
+
+        const defaultProjects = [
+            { id: 1, title: 'ইন্টেলিজেন্ট ই-কমার্স ইঞ্জিন', description: 'ক্রেতাদের কেনাকাটার প্যাটার্ন এবং পছন্দ অটোমেটিকভাবে বিশ্লেষণ করার জন্য কাস্টম মেশিন লার্নিং অ্যালগরিদম ভিত্তিক আধুনিক প্ল্যাটফর্ম।', tags: ['AI', 'Web Application', 'Python'], img: 'https://images.unsplash.com/photo-1563013544-824ae1d704d3?auto=format&fit=crop&w=500&q=80' },
+            { id: 2, title: 'রিমোট টিম কোলাবরেশন স্যুট', description: 'সম্পূর্ণ এনক্রিপ্টেড উপায়ে টাস্ক ম্যানেজমেন্ট, টাইম ট্র্যাকিং এবং সিকিউর ফাইল শেয়ারিং নিশ্চিত করার জন্য একটি গ্লোবাল ক্লাউড প্ল্যাটফর্ম।', tags: ['SaaS', 'Cloud System', 'Security'], img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=500&q=80' },
+            { id: 3, title: 'হেলথকেয়ার ডায়াগনস্টিক ম্যানেজার', description: 'মেডিকেল ইমেজিং রিপোর্ট অ্যানালাইসিস এবং রোগীদের প্রেসক্রিপশন ডেটাবেজ ম্যানেজ করার জন্য তৈরি রিয়েল-টাইম নেティブ মোবাইল অ্যাপ্লিকেশন।', tags: ['Mobile App', 'Healthcare'], img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=500&q=80' }
+        ];
+
+        const defaultReviews = [
+            { name: 'আরিফুর রহমান', company: 'টেকট্রন লিমিটেড', content: 'Fario আমাদের কোম্পানির জন্য যে এআই ড্যাশবোর্ড তৈরি করে দিয়েছে, তা এক কথায় অসাধারণ। আমাদের টিম এফিসিয়েন্সি অনেক বেড়েছে।', rating: 5, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80' },
+            { name: 'নুসরাত জাহান', company: 'স্টাইল ডেকোর', content: 'তাদের রেসপন্সিভ ওয়েব প্ল্যাটফর্ম ডেভেলপমেন্ট সার্ভিসটি অত্যন্ত প্রফেশনাল। ডিজাইন সেন্স এবং টাইমিং পারফেক্ট ছিল।', rating: 5, avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80' }
+        ];
+
+        function initLocalStorageDatabase() {
+            if (!localStorage.getItem(APP_STORAGE_KEY_BLOGS)) localStorage.setItem(APP_STORAGE_KEY_BLOGS, JSON.stringify(defaultBlogs));
+            if (!localStorage.getItem(APP_STORAGE_KEY_PROJECTS)) localStorage.setItem(APP_STORAGE_KEY_PROJECTS, JSON.stringify(defaultProjects));
+            if (!localStorage.getItem(APP_STORAGE_KEY_CONTACTS)) localStorage.setItem(APP_STORAGE_KEY_CONTACTS, JSON.stringify([]));
+            if (!localStorage.getItem(APP_STORAGE_KEY_CAREERS)) localStorage.setItem(APP_STORAGE_KEY_CAREERS, JSON.stringify([]));
+        }
+        initLocalStorageDatabase();
+
+        const DB = {
+            getBlogs: () => JSON.parse(localStorage.getItem(APP_STORAGE_KEY_BLOGS)),
+            setBlogs: (data) => localStorage.setItem(APP_STORAGE_KEY_BLOGS, JSON.stringify(data)),
+            getProjects: () => JSON.parse(localStorage.getItem(APP_STORAGE_KEY_PROJECTS)),
+            setProjects: (data) => localStorage.setItem(APP_STORAGE_KEY_PROJECTS, JSON.stringify(data)),
+            getMessages: () => JSON.parse(localStorage.getItem(APP_STORAGE_KEY_CONTACTS)),
+            addMessage: (msg) => {
+                const cur = DB.getMessages(); cur.push(msg);
+                localStorage.setItem(APP_STORAGE_KEY_CONTACTS, JSON.stringify(cur));
+            },
+            getApps: () => JSON.parse(localStorage.getItem(APP_STORAGE_KEY_CAREERS)),
+            setApps: (data) => localStorage.setItem(APP_STORAGE_KEY_CAREERS, JSON.stringify(data)),
+            addApp: (app) => {
+                const cur = DB.getApps(); cur.push(app);
+                localStorage.setItem(APP_STORAGE_KEY_CAREERS, JSON.stringify(cur));
+            }
+        };
+
+        // Edit Tracking Volatile Memory Block Cache
+        let editingBlogId = null;
+        let editingProjectId = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDynamicInterfaceElements();
+            initCoreInteractions();
+            initThemeEngine();
+            initTypingAnimation();
+            initCarouselSlider();
+            setupIntersectionObservers();
+        });
+
+        /* View Layer Content Render Engines */
+        function renderDynamicInterfaceElements() {
+            // Render Projects inside Carousel Track UI
+            const track = document.getElementById('projects-target-track');
+            track.innerHTML = '';
+            DB.getProjects().forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'glass-card project-card';
+                card.innerHTML = `
+                    <div class="project-img-wrapper">
+                        <img src="${p.img || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80'}" alt="${p.title}" loading="lazy">
+                    </div>
+                    <div class="project-tags">
+                        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                    </div>
+                    <h3 style="font-size:1.4rem; margin-bottom:0.75rem;">${p.title}</h3>
+                    <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6; flex-grow:1;">${p.description}</p>
+                `;
+                track.appendChild(card);
+            });
+
+            // Render Tech Blog Target Cards with Images support
+            const blogGrid = document.getElementById('blog-target-grid');
+            blogGrid.innerHTML = '';
+            DB.getBlogs().forEach(b => {
+                const card = document.createElement('div');
+                card.className = 'glass-card';
+                card.style.cursor = 'pointer';
+                
+                let imageHTML = b.img ? `<img src="${b.img}" class="blog-card-img" alt="${b.title}" loading="lazy">` : '';
+                
+                card.innerHTML = `
+                    ${imageHTML}
+                    <h3 style="font-size:1.4rem; margin-bottom:1rem; color:var(--primary);">${b.title}</h3>
+                    <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">${b.excerpt}</p>
+                    <span style="font-weight:600; font-size:0.95rem; color:var(--text-main); display:inline-flex; align-items:center; gap:0.4rem; margin-top:auto;">সম্পূর্ণ পড়ুন <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+                `;
+                card.addEventListener('click', () => triggerBlogModalPopup(b));
+                blogGrid.appendChild(card);
+            });
+
+            // Render Client Validation Dynamic Feedback Reviews UI Elements
+            const revGrid = document.getElementById('reviews-target-grid');
+            revGrid.innerHTML = '';
+            defaultReviews.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'glass-card';
+                card.innerHTML = `
+                    <div class="review-header">
+                        <img src="${r.avatar}" alt="${r.name}" class="review-avatar" loading="lazy">
+                        <div>
+                            <h4 style="font-size:1.1rem; font-weight:600;">${r.name}</h4>
+                            <p style="font-size:0.85rem; color:var(--text-muted);">${r.company}</p>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-muted); font-size:1rem; line-height:1.7;">"${r.content}"</p>
+                    <div class="review-stars">
+                        ${Array(r.rating).fill(`<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`).join('')}
+                    </div>
+                `;
+                revGrid.appendChild(card);
+            });
+        }
+
+        /* Modal Dialog Interface State Controllers */
+        const modalMask = document.getElementById('global-modal-mask');
+        const modalShell = document.getElementById('global-modal-shell');
+        const modalContent = document.getElementById('modal-dynamic-content');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function openGlobalModal() {
+            modalMask.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGlobalModal() {
+            modalMask.classList.remove('active');
+            document.body.style.overflow = '';
+            modalShell.style.maxWidth = ''; // Reset frame sizing configs rules safely upon exits
+        }
+
+        modalCloseBtn.addEventListener('click', closeGlobalModal);
+        modalMask.addEventListener('click', (e) => { if(e.target === modalMask) closeGlobalModal(); });
+
+        function triggerBlogModalPopup(blogObj) {
+            let heroImageHTML = blogObj.img ? `<img src="${blogObj.img}" style="width:100%; max-height:320px; object-fit:cover; border-radius:14px; margin-bottom:1.5rem; border:1px solid var(--border-color);" alt="${blogObj.title}">` : '';
+            
+            modalContent.innerHTML = `
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; line-height: 1.4; color: var(--primary);">${blogObj.title}</h3>
+                ${heroImageHTML}
+                <div style="color: var(--text-main); font-size: 1.1rem; line-height: 1.8; text-align: justify; white-space: pre-wrap;">
+                    ${blogObj.content}
+                </div>
+            `;
+            openGlobalModal();
+        }
+
+        /* Responsive Custom Toast Notification Pipeline UI Systems */
+        function spawnToastNotification(textMessage) {
+            const container = document.getElementById('toast-container');
+            const card = document.createElement('div');
+            card.className = 'toast-card';
+            card.innerText = textMessage;
+            container.appendChild(card);
+            
+            card.offsetHeight; // Force Layout Re-render Engine Trigger safely
+            card.classList.add('active');
+
+            setTimeout(() => {
+                card.classList.remove('active');
+                card.addEventListener('transitionend', () => card.remove());
+            }, 4000);
+        }
+
+        /* Interactive Speed-Optimized Typography Animation Module Logic */
+        function initTypingAnimation() {
+            const words = ['AI অ্যাপস', 'অটোমেশন সিস্টেম', 'আধুনিক ওয়েবসাইট', 'কাস্টম software'];
+            let wordIndex = 0; let charIndex = 0; let isDeleting = false;
+            const dest = document.getElementById('typing-destination');
+
+            function typeLoop() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) charIndex--; else charIndex++;
+                dest.innerText = currentWord.substring(0, charIndex);
+
+                let speed = isDeleting ? 40 : 100;
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    speed = 2200; isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    speed = 400;
+                }
+                setTimeout(typeLoop, speed);
+            }
+            setTimeout(typeLoop, 500);
+        }
+
+        /* Fluid Carousel Tracks Module Mechanics Configuration */
+        function initCarouselSlider() {
+            const track = document.getElementById('projects-target-track');
+            const prevBtn = document.getElementById('slide-prev-btn');
+            const nextBtn = document.getElementById('slide-next-btn');
+            let currentOffset = 0;
+
+            function updateSliderPosition() {
+                const maxShift = track.scrollWidth - track.parentElement.clientWidth;
+                if (currentOffset < 0) currentOffset = 0;
+                if (currentOffset > maxShift) currentOffset = maxShift;
+                track.style.transform = `translateX(-${currentOffset}px)`;
+            }
+
+            nextBtn.addEventListener('click', () => { currentOffset += 340; updateSliderPosition(); });
+            prevBtn.addEventListener('click', () => { currentOffset -= 340; updateSliderPosition(); });
+            window.addEventListener('resize', () => { currentOffset = 0; updateSliderPosition(); });
+        }
+
+        /* On-Scroll Element Intersection Observers System Hook */
+        function setupIntersectionObservers() {
+            const sections = document.querySelectorAll('section');
+            const options = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+            sections.forEach(s => observer.observe(s));
+        }
+
+        /* Native Modern Cross-Browser Theme Switching Engine Elements */
+        function initThemeEngine() {
+            const themeBtn = document.getElementById('theme-btn');
+            const sunIcon = themeBtn.querySelector('.sun-icon');
+            const moonIcon = themeBtn.querySelector('.moon-icon');
+            
+            let savedTheme = localStorage.getItem('fario_platform_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateIcons(savedTheme);
+
+            themeBtn.addEventListener('click', () => {
+                let currentTheme = document.documentElement.getAttribute('data-theme');
+                let targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', targetTheme);
+                localStorage.setItem('fario_platform_theme_mode', targetTheme);
+                updateIcons(targetTheme);
+            });
+
+            function updateIcons(theme) {
+                if(theme === 'dark') { sunIcon.style.display = 'block'; moonIcon.style.display = 'none'; }
+                else { sunIcon.style.display = 'none'; moonIcon.style.display = 'block'; }
+            }
+        }
+
+        /* Main Event Management Registration Core Routines */
+        function initCoreInteractions() {
+            window.addEventListener('load', () => {
+                const ldr = document.getElementById('loader');
+                ldr.style.opacity = '0'; setTimeout(() => ldr.style.display = 'none', 500);
+            });
+
+            const glow = document.getElementById('cursor-glow');
+            document.addEventListener('mousemove', (e) => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+            document.addEventListener('mouseenter', () => glow.style.opacity = '1');
+            document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+
+            const header = document.getElementById('main-header');
+            const topScroller = document.getElementById('top-scroller');
+            const progressBar = document.getElementById('scroll-progress');
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                progressBar.style.width = ((winScroll / height) * 100) + '%';
+
+                if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+                if (window.scrollY > 400) topScroller.classList.add('active'); else topScroller.classList.remove('active');
+            });
+
+            topScroller.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            const menuBtn = document.getElementById('menu-btn');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const overlayLinks = document.querySelectorAll('.overlay-links a');
+
+            function toggleMenuState() {
+                const active = menuOverlay.classList.toggle('active');
+                if (active) {
+                    document.getElementById('line1').style.transform = 'translate(4px, 4px) rotate(45deg)';
+                    document.getElementById('line2').style.opacity = '0';
+                    document.getElementById('line3').style.transform = 'translate(4px, -4px) rotate(-45deg)';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.getElementById('line1').style.transform = 'none';
+                    document.getElementById('line2').style.opacity = '1';
+                    document.getElementById('line3').style.transform = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+
+            menuBtn.addEventListener('click', toggleMenuState);
+            overlayLinks.forEach(link => { link.addEventListener('click', () => { if(menuOverlay.classList.contains('active')) toggleMenuState(); }); });
+
+            const faqTriggers = document.querySelectorAll('.faq-trigger');
+            faqTriggers.forEach(t => {
+                t.addEventListener('click', () => {
+                    const parent = t.parentElement; const panel = t.nextElementSibling;
+                    const isActive = parent.classList.contains('active');
+                    
+                    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('active'); i.querySelector('.faq-panel').style.maxHeight = null; });
+                    if(!isActive) { parent.classList.add('active'); panel.style.maxHeight = panel.scrollHeight + "px"; }
+                });
+            });
+
+            document.getElementById('contact-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('contact-name').value.trim();
+                const identity = document.getElementById('contact-identity').value.trim();
+                const message = document.getElementById('contact-message').value.trim();
+
+                DB.addMessage({ name, identity, message, timestamp: new Date().toLocaleString() });
+                spawnToastNotification('ধন্যবাদ! আপনার বার্তাটি সফলভাবে সংরক্ষিত হয়েছে।'); e.target.reset();
+            });
+
+            document.getElementById('career-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('career-name').value.trim();
+                const email = document.getElementById('career-email').value.trim();
+                const phone = document.getElementById('career-phone').value.trim();
+                const portfolio = document.getElementById('career-portfolio').value.trim();
+                const skills = document.getElementById('career-skills').value.trim();
+                const msg = document.getElementById('career-msg').value.trim();
+
+                DB.addApp({ id: Date.now(), name, email, phone, portfolio, skills, msg, status: 'pending', timestamp: new Date().toLocaleString() });
+                spawnToastNotification('আপনার প্রফেশনাল ক্যারিয়ার আবেদনটি সফলভাবে জমা নেওয়া হয়েছে।'); e.target.reset();
+            });
+
+            document.getElementById('admin-trigger-link').addEventListener('click', (e) => { e.preventDefault(); triggerAdminAccessVerificationProcedure(); });
+        }
+
+        /* Administrative Core Gate Overlay Controllers & Pass Verification Module */
+        function triggerAdminAccessVerificationProcedure() {
+            modalContent.innerHTML = `
+                <h3 style="font-size:1.6rem; margin-bottom:1.5rem; text-align:center; color:var(--primary);">সিকিউরড অ্যাডমিন লগইন</h3>
+                <div style="max-width:340px; margin:0 auto;">
+                    <div class="form-group">
+                        <input type="password" id="admin-pass-input" class="form-control" placeholder="অ্যাডমিন পাসওয়ার্ড লিখুন" style="text-align:center;">
+                    </div>
+                    <button id="admin-login-submit" class="btn btn-primary" style="width:100%;">প্রবেশ করুন</button>
+                </div>
+            `;
+            openGlobalModal();
+            document.getElementById('admin-login-submit').addEventListener('click', verifyAdminPasswordInput);
+            document.getElementById('admin-pass-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') verifyAdminPasswordInput(); });
+        }
+
+        function verifyAdminPasswordInput() {
+            if(document.getElementById('admin-pass-input').value === 'FarioAdmin2026') {
+                spawnToastNotification('অ্যাডমিন অ্যাক্সেস ভেরিফাইড।'); renderAdminControlDashboardConsole();
+            } else {
+                spawnToastNotification('ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।');
+            }
+        }
+
+        /* Advanced Full CRUD Command Console Dashboard Rendering Subsystem */
+        function renderAdminControlDashboardConsole() {
+            modalShell.style.maxWidth = '1050px'; // Set adaptive scale footprint layout settings rule safely
+            modalContent.innerHTML = `
+                <h3 style="font-size:1.6rem; margin-bottom:1rem; color:var(--primary); font-weight:700;">Fario এডমিনিস্ট্রেটিভ কন্ট্রোল ড্যাশবোর্ড</h3>
+                <div class="admin-view-panel">
+                    <div class="admin-sidebar">
+                        <button class="admin-tab-btn active" onclick="switchAdminWorkspaceTab(event, 'pane-msg')">যোগাযোগ বার্তা</button>
+                        <button class="admin-tab-btn" onclick="withRefreshAdminTab(event, 'pane-apps', renderAdminAppsTab)">চাকরির আবেদন</button>
+                        <button class="admin-tab-btn" onclick="withRefreshAdminTab(event, 'pane-manage-blogs', renderAdminBlogsListTab)">ব্লগ কন্টেন্ট CRUD</button>
+                        <button class="admin-tab-btn" onclick="withRefreshAdminTab(event, 'pane-manage-projects', renderAdminProjectsListTab)">প্রজেক্ট পোর্টফোলিও CRUD</button>
+                    </div>
+                    <div class="admin-main-workspace">
+                        
+                        <!-- Tab Section: Messages Data Pane -->
+                        <div id="pane-msg" class="admin-pane active">
+                            <h4>ক্লায়েন্টদের প্রেরিত বার্তা তালিকা</h4>
+                            <div class="data-table-wrapper">
+                                <table class="data-table">
+                                    <thead><tr><th>নাম</th><th>যোগাযোগ আইডি</th><th>বার্তা</th></tr></thead>
+                                    <tbody>
+                                        ${DB.getMessages().map(m => `<tr><td>${m.name}</td><td>${m.identity}</td><td>${m.message}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center; color:var(--text-muted);">কোনো বার্তা পাওয়া যায়নি</td></tr>'}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab Section: Enhanced Career Advanced Pipeline Applications Tracking Module -->
+                        <div id="pane-apps" class="admin-pane">
+                            <!-- Dynamic Content Populated In Line Inside Custom Methods Grid Blocks Below -->
+                        </div>
+
+                        <!-- Tab Section: Managed Blogs Content CRUD Panel View Layer -->
+                        <div id="pane-manage-blogs" class="admin-pane">
+                            <!-- Populated Dynamically via dedicated method runtime executions -->
+                        </div>
+
+                        <!-- Tab Section: Managed Projects Catalogue Database View Layout Layer -->
+                        <div id="pane-manage-projects" class="admin-pane">
+                            <!-- Populated dynamically through core loops context mapping methods -->
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        }
+
+        window.switchAdminWorkspaceTab = function(event, paneId) {
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.admin-pane').forEach(pane => pane.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById(paneId).classList.add('active');
+        };
+
+        window.withRefreshAdminTab = function(event, paneId, contentRenderCallbackFunction) {
+            switchAdminWorkspaceTab(event, paneId);
+            contentRenderCallbackFunction();
+        };
+
+        /* Upgraded Sub-Tab View Execution Content Generators */
+        function renderAdminAppsTab() {
+            const targetContainerPane = document.getElementById('pane-apps');
+            targetContainerPane.innerHTML = `
+                <h4>ক্যারিয়ার অ্যাপ্লিকেশান ট্র্যাকিং রেকর্ডস</h4>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>আবেদনকারী</th><th>স্কিলস</th><th>সংযুক্ত লিঙ্ক</th><th>স্ট্যাটাস</th><th>অ্যাকশন</th></tr></thead>
+                        <tbody>
+                            ${DB.getApps().map(a => `
+                                <tr>
+                                    <td><strong>${a.name}</strong><br><small>${a.email}</small><br><small>${a.phone}</small></td>
+                                    <td><span style="color:var(--primary); font-size:0.85rem;">${a.skills}</span><br><p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">${a.msg}</p></td>
+                                    <td><a href="${a.portfolio}" target="_blank" style="color:var(--primary); text-decoration:underline; font-size:0.85rem;">পোর্টফোলিও লিংক</a></td>
+                                    <td><span class="status-badge status-${a.status}">${a.status}</span></td>
+                                    <td>
+                                        <select class="form-control" style="padding:0.4rem; font-size:0.8rem; border-radius:6px; min-width:100px;" onchange="executeAdminUpdateAppStatusAction(${a.id}, this.value)">
+                                            <option value="pending" ${a.status==='pending'?'selected':''}>Reviewing</option>
+                                            <option value="shortlisted" ${a.status==='shortlisted'?'selected':''}>Shortlist</option>
+                                            <option value="rejected" ${a.status==='rejected'?'selected':''}>Reject</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            `).join('') || '<tr><td colspan="5" style="text-align:center; color:var(--text-muted);">কোনো ক্যারিয়ার আবেদন জমা পড়েনি</td></tr>'}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        window.executeAdminUpdateAppStatusAction = function(appId, updatedStatusValue) {
+            let applications = DB.getApps();
+            let idx = applications.findIndex(x => x.id === appId);
+            if(idx !== -1) {
+                applications[idx].status = updatedStatusValue; DB.setApps(applications);
+                spawnToastNotification('আবেদনের স্ট্যাটাস আপডেট করা হয়েছে।'); renderAdminAppsTab();
+            }
+        };
+
+        function renderAdminBlogsListTab() {
+            const container = document.getElementById('pane-manage-blogs');
+            container.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <h5 style="font-size:1.2rem;">বিদ্যমান কন্টেন্ট ব্লগ তালিকা</h5>
+                    <button class="btn btn-primary" style="padding:0.5rem 1.2rem; font-size:0.85rem; border-radius:8px;" onclick="triggerAdminBlogFormViewPopup()">নতুন ব্লগ তৈরি করুন</button>
+                </div>
+                <div id="blog-form-injection-zone" style="margin-bottom:1.5rem;"></div>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>ছবি</th><th>শিরোনাম</th><th>সারাংশ</th><th>অ্যাকশন</th></tr></thead>
+                        <tbody>
+                            ${DB.getBlogs().map(b => `
+                                <tr>
+                                    <td><img src="${b.img || ''}" style="width:50px; height:40px; object-fit:cover; border-radius:4px; background:#000;"></td>
+                                    <td><strong>${b.title}</strong></td>
+                                    <td><small style="color:var(--text-muted);">${b.excerpt.substring(0, 60)}...</small></td>
+                                    <td>
+                                        <div class="action-btn-group">
+                                            <button class="action-icon-btn edit" onclick="triggerAdminBlogFormViewPopup(${b.id})" title="এডিট"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg></button>
+                                            <button class="action-icon-btn delete" onclick="executeAdminBlogDeleteAction(${b.id})" title="ডিলিট"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('') || '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">কোনো ব্লগ পোস্ট পাওয়া যায়নি</td></tr>'}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        window.triggerAdminBlogFormViewPopup = function(blogId = null) {
+            const formContainerZone = document.getElementById('blog-form-injection-zone');
+            if(!blogId) {
+                editingBlogId = null;
+                formContainerZone.innerHTML = `
+                    <div class="glass-card" style="padding:1.5rem; background:rgba(0,0,0,0.2); border-color:var(--primary);">
+                        <h5 style="margin-bottom:1rem; color:var(--primary);">নতুন ব্লগ পোস্ট কন্টেন্ট রাইটিং</h5>
+                        <div class="form-group"><input type="text" id="adm-b-title" class="form-control" placeholder="ব্লগ শিরোনাম"></div>
+                        <div class="form-group"><input type="text" id="adm-b-img" class="form-control" placeholder="পিকচার লিংক / ইমেজ ইউআরএল ইউবিউটি লিংক (যেমন Unsplash URL)"></div>
+                        <div class="form-group"><input type="text" id="adm-b-excerpt" class="form-control" placeholder="সংক্ষিপ্ত সারাংশ (Excerpt)"></div>
+                        <div class="form-group"><textarea id="adm-b-content" class="form-control" placeholder="বিস্তারিত কন্টেন্ট বডি..."></textarea></div>
+                        <div style="display:flex; gap:1rem;">
+                            <button class="btn btn-primary" onclick="executeAdminBlogPublishAction()" style="padding:0.6rem 1.5rem; border-radius:8px;">পাবলিশ করুন</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('blog-form-injection-zone').innerHTML=''" style="padding:0.6rem 1.5rem; border-radius:8px;">বাতিল</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                editingBlogId = blogId;
+                const match = DB.getBlogs().find(x => x.id === blogId);
+                if(!match) return;
+                formContainerZone.innerHTML = `
+                    <div class="glass-card" style="padding:1.5rem; background:rgba(0,0,0,0.2); border-color:var(--warning);">
+                        <h5 style="margin-bottom:1rem; color:var(--warning);">ব্লগ কন্টেন্ট সংশোধন / এডিট মোড</h5>
+                        <div class="form-group"><input type="text" id="adm-b-title" class="form-control" value="${match.title}"></div>
+                        <div class="form-group"><input type="text" id="adm-b-img" class="form-control" value="${match.img || ''}" placeholder="পিকচার লিংক / ইমেজ ইউআরএল"></div>
+                        <div class="form-group"><input type="text" id="adm-b-excerpt" class="form-control" value="${match.excerpt}"></div>
+                        <div class="form-group"><textarea id="adm-b-content" class="form-control">${match.content}</textarea></div>
+                        <div style="display:flex; gap:1rem;">
+                            <button class="btn btn-primary" onclick="executeAdminBlogPublishAction()" style="padding:0.6rem 1.5rem; border-radius:8px; background:var(--accent-gradient);">আপডেট সংরক্ষণ করুন</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('blog-form-injection-zone').innerHTML=''" style="padding:0.6rem 1.5rem; border-radius:8px;">বাতিল</button>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+
+        window.executeAdminBlogPublishAction = function() {
+            const title = document.getElementById('adm-b-title').value.trim();
+            const img = document.getElementById('adm-b-img').value.trim();
+            const excerpt = document.getElementById('adm-b-excerpt').value.trim();
+            const content = document.getElementById('adm-b-content').value.trim();
+
+            if(!title || !excerpt || !content) { spawnToastNotification('ব্লগের প্রয়োজনীয় তথ্যাদি ইনপুট দিন।'); return; }
+
+            let currentBlogsList = DB.getBlogs();
+            if(editingBlogId === null) {
+                currentBlogsList.unshift({ id: Date.now(), title, excerpt, content, img });
+                spawnToastNotification('নতুন ব্লগ সফলভাবে ডাটাবেজে প্রকাশিত হয়েছে।');
+            } else {
+                let idx = currentBlogsList.findIndex(x => x.id === editingBlogId);
+                if(idx !== -1) {
+                    currentBlogsList[idx] = { id: editingBlogId, title, excerpt, content, img };
+                    spawnToastNotification('ব্লগ কন্টেন্ট সফলভাবে আপডেট করা হয়েছে।');
+                }
+                editingBlogId = null;
+            }
+            DB.setBlogs(currentBlogsList); renderDynamicInterfaceElements(); renderAdminBlogsListTab();
+        };
+
+        window.executeAdminBlogDeleteAction = function(blogId) {
+            if(confirm('আপনি কি নিশ্চিতভাবে এই ব্লগ পোস্টটি ডিলিট করতে চান?')) {
+                let list = DB.getBlogs().filter(x => x.id !== blogId);
+                DB.setBlogs(list); spawnToastNotification('ব্লগ পোস্ট সফলভাবে অপসারিত বা ডিলিট হয়েছে।');
+                renderDynamicInterfaceElements(); renderAdminBlogsListTab();
+            }
+        };
+
+        function renderAdminProjectsListTab() {
+            const container = document.getElementById('pane-manage-projects');
+            container.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <h5 style="font-size:1.2rem;">পোর্টফোলিও ক্যাটালগ রেকর্ড তালিকা</h5>
+                    <button class="btn btn-primary" style="padding:0.5rem 1.2rem; font-size:0.85rem; border-radius:8px;" onclick="triggerAdminProjectFormViewPopup()">নতুন প্রজেক্ট যুক্ত করুন</button>
+                </div>
+                <div id="project-form-injection-zone" style="margin-bottom:1.5rem;"></div>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>ইমেজ</th><th>প্রজেক্টের নাম</th><th>ট্যাগ</th><th>অ্যাকশন</th></tr></thead>
+                        <tbody>
+                            ${DB.getProjects().map(p => `
+                                <tr>
+                                    <td><img src="${p.img || ''}" style="width:50px; height:40px; object-fit:cover; border-radius:4px; background:#000;"></td>
+                                    <td><strong>${p.title}</strong></td>
+                                    <td><small>${p.tags.join(', ')}</small></td>
+                                    <td>
+                                        <div class="action-btn-group">
+                                            <button class="action-icon-btn edit" onclick="triggerAdminProjectFormViewPopup(${p.id})" title="এডিট"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg></button>
+                                            <button class="action-icon-btn delete" onclick="executeAdminProjectDeleteAction(${p.id})" title="ডিলিট"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('') || '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">কোনো প্রজেক্ট পাওয়া যায়নি</td></tr>'}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        window.triggerAdminProjectFormViewPopup = function(projectId = null) {
+            const zone = document.getElementById('project-form-injection-zone');
+            if(!projectId) {
+                editingProjectId = null;
+                zone.innerHTML = `
+                    <div class="glass-card" style="padding:1.5rem; background:rgba(0,0,0,0.2); border-color:var(--primary);">
+                        <h5 style="margin-bottom:1rem; color:var(--primary);">নতুন প্রজেক্ট ডাটা এনালগ ইনসার্ট</h5>
+                        <div class="form-group"><input type="text" id="adm-p-title" class="form-control" placeholder="প্রজেক্টের নাম"></div>
+                        <div class="form-group"><input type="text" id="adm-p-desc" class="form-control" placeholder="সংক্ষিপ্ত বিবরণ"></div>
+                        <div class="form-group"><input type="text" id="adm-p-tags" class="form-control" placeholder="ট্যাগসমূহ (কমা দিয়ে আলাদা করুন)"></div>
+                        <div class="form-group"><input type="text" id="adm-p-img" class="form-control" placeholder="ইমেজ ইউআরএল লিংক (Unsplash / CDN URL)"></div>
+                        <div style="display:flex; gap:1rem;">
+                            <button class="btn btn-primary" onclick="executeAdminProjectPublishAction()" style="padding:0.6rem 1.5rem; border-radius:8px;">সংরক্ষণ করুন</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('project-form-injection-zone').innerHTML=''" style="padding:0.6rem 1.5rem; border-radius:8px;">বাতিল</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                editingProjectId = projectId;
+                const match = DB.getProjects().find(x => x.id === projectId);
+                if(!match) return;
+                zone.innerHTML = `
+                    <div class="glass-card" style="padding:1.5rem; background:rgba(0,0,0,0.2); border-color:var(--warning);">
+                        <h5 style="margin-bottom:1rem; color:var(--warning);">প্রজেক্ট মডিউল আপডেট / এডিট মোড</h5>
+                        <div class="form-group"><input type="text" id="adm-p-title" class="form-control" value="${match.title}"></div>
+                        <div class="form-group"><input type="text" id="adm-p-desc" class="form-control" value="${match.description}"></div>
+                        <div class="form-group"><input type="text" id="adm-p-tags" class="form-control" value="${match.tags.join(', ')}"></div>
+                        <div class="form-group"><input type="text" id="adm-p-img" class="form-control" value="${match.img || ''}"></div>
+                        <div style="display:flex; gap:1rem;">
+                            <button class="btn btn-primary" onclick="executeAdminProjectPublishAction()" style="padding:0.6rem 1.5rem; border-radius:8px;">আপডেট দিন</button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('project-form-injection-zone').innerHTML=''" style="padding:0.6rem 1.5rem; border-radius:8px;">বাতিল</button>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+
+        window.executeAdminProjectPublishAction = function() {
+            const title = document.getElementById('adm-p-title').value.trim();
+            const description = document.getElementById('adm-p-desc').value.trim();
+            const tagInput = document.getElementById('adm-p-tags').value.trim();
+            let img = document.getElementById('adm-p-img').value.trim();
+
+            if(!title || !description || !tagInput) { spawnToastNotification('প্রজেক্টের প্রয়োজনীয় তথ্যাদি ইনপুট দিন।'); return; }
+            if(!img) img = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80';
+            
+            const tags = tagInput.split(',').map(t => t.trim());
+            let currentProjectsList = DB.getProjects();
+
+            if(editingProjectId === null) {
+                currentProjectsList.unshift({ id: Date.now(), title, description, tags, img });
+                spawnToastNotification('নতুন প্রজেক্ট সফলভাবে ক্যাটালগে যুক্ত হয়েছে।');
+            } else {
+                let idx = currentProjectsList.findIndex(x => x.id === editingProjectId);
+                if(idx !== -1) {
+                    currentProjectsList[idx] = { id: editingProjectId, title, description, tags, img };
+                    spawnToastNotification('প্রজেক্ট সফলভাবে মডিউলে আপডেট করা হয়েছে।');
+                }
+                editingProjectId = null;
+            }
+            DB.setProjects(currentProjectsList); renderDynamicInterfaceElements(); renderAdminProjectsListTab();
+        };
+
+        window.executeAdminProjectDeleteAction = function(projectId) {
+            if(confirm('আপনি কি নিশ্চিতভাবে এই প্রজেক্ট রেকর্ডটি ডিলিট করতে চান?')) {
+                let list = DB.getProjects().filter(x => x.id !== projectId);
+                DB.setProjects(list); spawnToastNotification('প্রজেক্ট রেকর্ড ডাটাবেজ থেকে সফলভাবে ডিলিট হয়েছে।');
+                renderDynamicInterfaceElements(); renderAdminProjectsListTab();
+            }
+        };
+    </script>
+</body>
+</html>
